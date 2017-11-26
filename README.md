@@ -1,5 +1,7 @@
 # MINERVA
-Meandering In Networks of Entities to Reach Verisimilar Answers [Link to Paper](https://arxiv.org/abs/1711.05851)
+Meandering In Networks of Entities to Reach Verisimilar Answers 
+
+Code for the paper [Go for a Walk and Arrive at the Answer - Reasoning over Paths in Knowledge Bases using Reinforcement Learning](https://arxiv.org/abs/1711.05851)
 
 MINERVA is a RL agent which answers queries in a knowledge graph of entities and relations. Starting from an entity node, MINERVA learns to navigate the graph conditioned on the input query till it reaches the answer entity. For example, give the query, (Colin Kaepernick, PLAYERHOMESTADIUM, ?), MINERVA takes the path in the knowledge graph below as highlighted. Note: Only the solid edges are observed in the graph, the dashed edges are unobsrved.
 ![gif](https://github.com/shehzaadzd/MINERVA/blob/master/images/new.gif)
