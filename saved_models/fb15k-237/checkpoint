@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/sdhuliawala/logs/RL-Path-RNN/rpfb/8de7_3_0.02_10_0.02/model/model.ckpt"
+all_model_checkpoint_paths: "/home/sdhuliawala/logs/RL-Path-RNN/rpfb/8de7_3_0.02_10_0.02/model/model.ckpt"
