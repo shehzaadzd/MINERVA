@@ -57,7 +57,7 @@ Code
 
 To run MINERVA on a custom graph based dataset, you would need the graph and the queries as triples in the form of (e<sub>1</sub>,r, e<sub>2</sub>).
 Where e<sub>1</sub>, and e<sub>2</sub> are _nodes_ connected by the _edge_ r.
-The vocab can of the dataset can be created using the create_vocab.py file found in data/preprocessng scripts. The vocab needs to be stores in the json format `{ 'entity/relation': ID}`.
+The vocab can of the dataset can be created using the create_vocab.py file found in data/preprocessng scripts. The vocab needs to be stores in the json format `{'entity/relation': ID}`.
 The following shows the directory structure of the Kinship dataset.
 
 ```
