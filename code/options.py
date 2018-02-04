@@ -8,12 +8,10 @@ from pprint import pprint
 
 def read_options():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data_input_dir", default="/home/sdhuliawala/research/MINERVA/datasets/data_preprocessed/FB15K-237/", type=str)
-    # parser.add_argument("--data_input_dir", default="/home/sdhuliawala/FB15K-237/", type=str)
+    parser.add_argument("--data_input_dir", default="", type=str)
     parser.add_argument("--input_file", default="train.txt", type=str)
     parser.add_argument("--create_vocab", default=0, type=int)
-    parser.add_argument("--vocab_dir", default="/home/sdhuliawala/research/MINERVA/datasets/data_preprocessed/FB15K-237/vocab", type=str)
-    # parser.add_argument("--vocab_dir", default="/home/sdhuliawala/vocab_fb15k237", type=str)
+    parser.add_argument("--vocab_dir", default="", type=str)
     parser.add_argument("--max_num_actions", default=250, type=int)
     parser.add_argument("--path_length", default=3, type=int)
     parser.add_argument("--hidden_size", default=50, type=int)
@@ -54,10 +52,6 @@ def read_options():
     parsed['train_entity_embeddings'] = (parsed['train_entity_embeddings'] == 1)
     parsed['train_relation_embeddings'] = (parsed['train_relation_embeddings'] == 1)
 
-
-
-    # parsed['pretrained_embeddings_action'] = "/home/sdhuliawala/KB2E/TransE/relation2vec.bern"
-    # parsed['pretrained_embeddings_entity'] = "/home/sdhuliawala/KB2E/TransE/entity2vec.bern"
     parsed['pretrained_embeddings_action'] = ""
     parsed['pretrained_embeddings_entity'] = ""
 
