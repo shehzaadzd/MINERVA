@@ -46,7 +46,7 @@ def read_options():
     parser.add_argument("--load_model", default=0, type=int)
     try:
         parsed = vars(parser.parse_args())
-    except IOError, msg:
+    except IOError as msg:
         parser.error(str(msg))
     parsed['input_files'] = [parsed['data_input_dir'] + '/' + parsed['input_file']]
 
@@ -79,5 +79,5 @@ def read_options():
     maxLen = max([len(ii) for ii in parsed.keys()])
     fmtString = '\t%' + str(maxLen) + 's : %s'
     print('Arguments:')
-    for keyPair in sorted(parsed.iteritems()): print(fmtString % keyPair)
+    for keyPair in sorted(parsed.items()): print(fmtString % keyPair)
     return parsed

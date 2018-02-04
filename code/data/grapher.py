@@ -20,10 +20,10 @@ class RelationEntityGrapher:
         self.array_store[:, :, 1] *= self.rPAD
         self.masked_array_store = None
 
-        self.rev_relation_vocab = dict([(v, k) for k, v in relation_vocab.iteritems()])
-        self.rev_entity_vocab = dict([(v, k) for k, v in entity_vocab.iteritems()])
+        self.rev_relation_vocab = dict([(v, k) for k, v in relation_vocab.items()])
+        self.rev_entity_vocab = dict([(v, k) for k, v in entity_vocab.items()])
         self.create_graph()
-        print "KG constructed"
+        print("KG constructed")
 
     def create_graph(self):
         with open(self.triple_store) as triple_file_raw:

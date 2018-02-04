@@ -17,7 +17,7 @@ class RelationEntityBatcher():
         self.relation_vocab = relation_vocab
         self.mode = mode
         self.create_triple_store(self.input_file)
-        print "batcher loaded"
+        print("batcher loaded")
 
 
     def get_next_batch(self):
@@ -56,7 +56,7 @@ class RelationEntityBatcher():
             fact_files = ['train.txt', 'test.txt', 'dev.txt', 'graph.txt']
             if os.path.isfile(self.input_dir+'/'+'full_graph.txt'):
                 fact_files = ['full_graph.txt']
-                print "Contains full graph"
+                print("Contains full graph")
 
             for f in fact_files:
             # for f in ['graph.txt']:
