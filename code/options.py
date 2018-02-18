@@ -42,6 +42,9 @@ def read_options():
     parser.add_argument("--train_relation_embeddings", default=1, type=int)
     parser.add_argument("--model_load_dir", default="", type=str)
     parser.add_argument("--load_model", default=0, type=int)
+    parser.add_argument("--nell_evaluation", default=0, type=int)
+    # parser.add_argument("--nell_query", default='all', type=str)
+
     try:
         parsed = vars(parser.parse_args())
     except IOError as msg:

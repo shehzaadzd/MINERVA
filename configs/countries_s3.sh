@@ -15,3 +15,4 @@ train_relation_embeddings=1
 base_output_dir="output/countries_s3/"
 model_load_dir="nothing"
 load_model=0
+nell_evaluation=0

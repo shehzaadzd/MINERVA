@@ -16,3 +16,4 @@ base_output_dir="output/countries_s2"
 load_model=0
 #load_model=1
 #model_load_dir="saved_models/countries_s2/model.ckpt"
+nell_evaluation=0

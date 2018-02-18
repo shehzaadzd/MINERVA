@@ -16,6 +16,7 @@ import gc
 import resource
 import sys
 from code.model.baseline import ReactiveBaseline
+from code.model.nell_eval import nell_eval
 
 
 
@@ -281,6 +282,7 @@ class Trainer(object):
     def test(self, sess, beam=False, print_paths=False, save_model = True, auc = False):
         batch_counter = 0
         paths = defaultdict(list)
+        answers = []
         feed_dict = {}
         all_final_reward_1 = 0
         all_final_reward_3 = 0
@@ -389,6 +391,7 @@ class Trainer(object):
             final_reward_20 = 0
             AP = 0
             ce = episode.state['current_entities'].reshape((temp_batch_size, self.test_rollouts))
+            se = episode.start_entities.reshape((temp_batch_size, self.test_rollouts))
             for b in range(temp_batch_size):
                 answer_pos = None
                 seen = set()
@@ -430,6 +433,7 @@ class Trainer(object):
                             rev = 1
                         else:
                             rev = -1
+                        answers.append(self.rev_entity_vocab[se[b,r]]+'\t'+ self.rev_entity_vocab[ce[b,r]]+'\t'+ str(self.log_probs[b,r])+'\n')
                         paths[str(qr)].append(
                             '\t'.join([str(self.rev_entity_vocab[e[indx]]) for e in
                                        self.entity_trajectory]) + '\n' + '\t'.join(
@@ -463,6 +467,9 @@ class Trainer(object):
                 with codecs.open(self.path_logger_file_ + '_' + j, 'a', 'utf-8') as pos_file:
                     for p in paths[q]:
                         pos_file.write(p)
+            with open(self.path_logger_file_ + 'answers', 'w') as answer_file:
+                for a in answers:
+                    answer_file.write(a)
 
         with open(self.output_dir + '/scores.txt', 'a') as score_file:
             score_file.write("Hits@1: {0:7.4f}".format(all_final_reward_1))
@@ -549,13 +556,17 @@ if __name__ == '__main__':
     with tf.Session(config=config) as sess:
         trainer.initialize(restore=save_path, sess=sess)
 
-        trainer.test_rollouts = 50
+        trainer.test_rollouts = 100
 
         os.mkdir(path_logger_file + "/" + "test_beam")
         trainer.path_logger_file_ = path_logger_file + "/" + "test_beam" + "/paths"
         with open(output_dir + '/scores.txt', 'a') as score_file:
             score_file.write("Test (beam) scores with best model from " + save_path + "\n")
         trainer.test_environment = trainer.test_test_environment
-        trainer.test_environment.test_rollouts = 50
+        trainer.test_environment.test_rollouts = 100
 
         trainer.test(sess, beam=True, print_paths=True, save_model=False)
+        print options['nell_evaluation']
+        if options['nell_evaluation'] == 1:
+            nell_eval(path_logger_file + "/" + "test_beam/" + "pathsanswers", trainer.data_input_dir+'/sort_test.pairs' )
+
