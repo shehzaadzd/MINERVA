@@ -30,7 +30,8 @@ We are also releasing pre-trained models so that you can directly use MINERVA fo
 load_model=1
 model_load_dir="saved_models/countries_s2/model.ckpt"
 ```
-
+## Output
+The code outputs the evaluation of MINERVA on the datasets provided. The metrics used for evaluation are Hits@{1,3,5,10,20} and MRR (which in the case of Countries is AUC-PR). Along with this, the code also outputs the answers MINERVA reached in a file.
 
 ## Code Structure
 
