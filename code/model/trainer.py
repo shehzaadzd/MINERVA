@@ -16,7 +16,7 @@ import gc
 import resource
 import sys
 from code.model.baseline import ReactiveBaseline
-from code.model.nell_eval import nell_eval_victoria
+from code.model.nell_eval import nell_eval
 
 
 
