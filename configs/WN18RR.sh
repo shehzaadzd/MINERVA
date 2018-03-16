@@ -2,7 +2,7 @@
 
 data_input_dir="datasets/data_preprocessed/WN18RR/"
 vocab_dir="datasets/data_preprocessed/WN18RR/vocab"
-total_iterations=300
+total_iterations=1000
 path_length=3
 hidden_size=50
 embedding_size=50

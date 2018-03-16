@@ -17,8 +17,7 @@ import resource
 import sys
 from code.model.baseline import ReactiveBaseline
 from code.model.nell_eval import nell_eval
-
-
+from scipy.misc import logsumexp as lse
 
 logger = logging.getLogger()
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
@@ -271,6 +270,9 @@ class Trainer(object):
                 self.path_logger_file_ = self.path_logger_file + "/" + str(self.batch_counter) + "/paths"
 
 
+                self.test_environment = self.dev_test_environment
+                self.test(sess, beam=True, print_paths=False)
+                self.test_environment = self.test_test_environment
                 self.test(sess, beam=True, print_paths=False)
 
             logger.info('Memory usage: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
@@ -404,8 +406,23 @@ class Trainer(object):
                         if ce[b, r] not in seen:
                             seen.add(ce[b, r])
                             pos += 1
-                else:
-                    raise NotImplementedError('Not implemented yet')
+                if self.pool == 'sum':
+                    scores = defaultdict(list)
+                    answer = ''
+                    for r in sorted_indx[b]:
+                        scores[ce[b,r]].append(self.log_probs[b,r])
+                        if reward_reshape[b,r] == self.positive_reward:
+                            answer = ce[b,r]
+                    final_scores = defaultdict(float)
+                    for e in scores:
+                        final_scores[e] = lse(scores[e])
+                    sorted_answers = sorted(final_scores, key=final_scores.get, reverse=True)
+                    if answer in  sorted_answers:
+                        answer_pos = sorted_answers.index(answer)
+                    else:
+                        answer_pos = None
+
+
                 if answer_pos != None:
                     if answer_pos < 20:
                         final_reward_20 += 1
@@ -456,7 +473,7 @@ class Trainer(object):
         all_final_reward_20 /= total_examples
         auc /= total_examples
         if save_model:
-            if all_final_reward_10 > self.max_hits_at_10:
+            if auc >= self.max_hits_at_10:
                 self.max_hits_at_10 = all_final_reward_10
                 self.save_path = self.model_saver.save(sess, self.model_dir + "model" + '.ckpt')
 
@@ -566,6 +583,9 @@ if __name__ == '__main__':
         trainer.test_environment.test_rollouts = 100
 
         trainer.test(sess, beam=True, print_paths=True, save_model=False)
+
+        # trainer.test_environment = trainer.dev_test_environment
+        # trainer.test(sess, beam=True, print_paths=True, save_model=False)
         print options['nell_evaluation']
         if options['nell_evaluation'] == 1:
             nell_eval(path_logger_file + "/" + "test_beam/" + "pathsanswers", trainer.data_input_dir+'/sort_test.pairs' )
