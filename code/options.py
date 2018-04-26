@@ -27,7 +27,7 @@ def read_options():
     parser.add_argument("--log_dir", default="./logs/", type=str)
     parser.add_argument("--log_file_name", default="reward.txt", type=str)
     parser.add_argument("--output_file", default="", type=str)
-    parser.add_argument("--num_rollouts", default=10, type=int)
+    parser.add_argument("--num_rollouts", default=20, type=int)
     parser.add_argument("--test_rollouts", default=100, type=int)
     parser.add_argument("--LSTM_layers", default=1, type=int)
     parser.add_argument("--model_dir", default='', type=str)
@@ -35,7 +35,7 @@ def read_options():
     parser.add_argument("--total_iterations", default=2000, type=int)
 
     parser.add_argument("--Lambda", default=0.0, type=float)
-    parser.add_argument("--pool", default="sum", type=str)
+    parser.add_argument("--pool", default="max", type=str)
     parser.add_argument("--eval_every", default=100, type=int)
     parser.add_argument("--use_entity_embeddings", default=0, type=int)
     parser.add_argument("--train_entity_embeddings", default=0, type=int)
