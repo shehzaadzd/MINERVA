@@ -15,3 +15,4 @@ train_relation_embeddings=1
 base_output_dir="output/grid_6/"
 load_model=0
 model_load_dir="null"
+nell_evaluation=0
