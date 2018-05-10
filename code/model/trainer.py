@@ -270,9 +270,7 @@ class Trainer(object):
                 self.path_logger_file_ = self.path_logger_file + "/" + str(self.batch_counter) + "/paths"
 
 
-                self.test_environment = self.dev_test_environment
-                self.test(sess, beam=True, print_paths=False)
-                self.test_environment = self.test_test_environment
+
                 self.test(sess, beam=True, print_paths=False)
 
             logger.info('Memory usage: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
@@ -473,7 +471,7 @@ class Trainer(object):
         all_final_reward_20 /= total_examples
         auc /= total_examples
         if save_model:
-            if auc >= self.max_hits_at_10:
+            if all_final_reward_10 >= self.max_hits_at_10:
                 self.max_hits_at_10 = all_final_reward_10
                 self.save_path = self.model_saver.save(sess, self.model_dir + "model" + '.ckpt')
 
@@ -584,8 +582,7 @@ if __name__ == '__main__':
 
         trainer.test(sess, beam=True, print_paths=True, save_model=False)
 
-        # trainer.test_environment = trainer.dev_test_environment
-        # trainer.test(sess, beam=True, print_paths=True, save_model=False)
+
         print options['nell_evaluation']
         if options['nell_evaluation'] == 1:
             nell_eval(path_logger_file + "/" + "test_beam/" + "pathsanswers", trainer.data_input_dir+'/sort_test.pairs' )

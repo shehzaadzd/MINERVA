@@ -2,7 +2,7 @@
 
 data_input_dir="datasets/data_preprocessed/FB15K-237/"
 vocab_dir="datasets/data_preprocessed/FB15K-237/vocab"
-total_iterations=3000
+total_iterations=2000
 path_length=3
 hidden_size=50
 embedding_size=50
