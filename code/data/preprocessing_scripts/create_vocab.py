@@ -13,8 +13,8 @@ import os
 # dir = parsed['data_input_dir']
 # vocab_dir = parsed['vocab_dir']
 root_dir = '../../../'
-vocab_dir = root_dir+'datasets/data_preprocessed/countries_S3_inv/vocab/'
-dir = root_dir+'datasets/data_preprocessed/countries_S3_inv/'
+vocab_dir = root_dir+'datasets/data_preprocessed/countries_S3/vocab/'
+dir = root_dir+'datasets/data_preprocessed/countries_S3/'
 
 os.makedirs(vocab_dir)
 
