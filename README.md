@@ -74,11 +74,10 @@ kinship
 ## Citation
 If you use this code, please cite our paper
 ```
-@article{minerva,
+@inproceedings{minerva,
   title = {Go for a Walk and Arrive at the Answer: Reasoning Over Paths in Knowledge Bases using Reinforcement Learning},
   author = {Das, Rajarshi and Dhuliawala Shehzaad and Zaheer Manzil and Vilnis Luke and Durugkar Ishan and Krishnamurthy Akshay and Smola Alex and McCallum Andrew},
-  journal = {ArXiv e-prints},
-  eprint = {1711.05851},
-  year = 2017
+  booktitle = {ICLR},
+  year = 2018
 }
 ```
