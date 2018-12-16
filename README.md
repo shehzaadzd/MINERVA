@@ -5,6 +5,8 @@ Code and models for the paper [Go for a Walk and Arrive at the Answer - Reasonin
 
 MINERVA is a RL agent which answers queries in a knowledge graph of entities and relations. Starting from an entity node, MINERVA learns to navigate the graph conditioned on the input query till it reaches the answer entity. For example, give the query, (Colin Kaepernick, PLAYERHOMESTADIUM, ?), MINERVA takes the path in the knowledge graph below as highlighted. Note: Only the solid edges are observed in the graph, the dashed edges are unobsrved.
 ![gif](https://github.com/shehzaadzd/MINERVA/blob/master/images/new.gif)
+ _gif courtesy of [Bhuvi Gupta](https://www.linkedin.com/in/bhuvigupta/?originalSubdomain=in)_ 
+
 
 
 ## Requirements
