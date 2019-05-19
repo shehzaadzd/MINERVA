@@ -10,7 +10,7 @@ MINERVA is a RL agent which answers queries in a knowledge graph of entities and
 
 
 ## Requirements
-To install the various python dependences (including tensorflow)
+To install the various python dependencies (including tensorflow)
 ```
 pip install -r requirements.txt
 ```
@@ -20,7 +20,7 @@ Training MINERVA is easy!. The hyperparam configs for each experiments are in th
 ```
 sh run.sh configs/${dataset}.sh
 ```
-where the ${dataset}.sh is the name of the config file. For example, 
+where the `${dataset}.sh` is the name of the config file. For example, 
 ```
 sh run.sh configs/countries_s3.sh
 ```
@@ -60,7 +60,7 @@ Code
 
 To run MINERVA on a custom graph based dataset, you would need the graph and the queries as triples in the form of (e<sub>1</sub>,r, e<sub>2</sub>).
 Where e<sub>1</sub>, and e<sub>2</sub> are _nodes_ connected by the _edge_ r.
-The vocab can of the dataset can be created using the create_vocab.py file found in data/preprocessng scripts. The vocab needs to be stores in the json format `{'entity/relation': ID}`.
+The vocab can of the dataset can be created using the `create_vocab.py` file found in `data/data preprocessing scripts`. The vocab needs to be stores in the json format `{'entity/relation': ID}`.
 The following shows the directory structure of the Kinship dataset.
 
 ```
